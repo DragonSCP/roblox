@@ -1,51 +1,68 @@
--- DragonScript.lua
+--Blox Fruit Gui2
+getgenv().SettingTheme = {
+    Tab = {
+        Left_Color = Color3.fromRGB(203 ,156, 255),
+        Right_Color = Color3.fromRGB(140, 166 ,252)
+    },
+    Button = {
+        Left_Color = Color3.fromRGB(203 ,156, 255),
+        Right_Color = Color3.fromRGB(140, 166 ,252)
+    },
+}
+if getgenv().SettingTheme == nil then
+	getgenv().SettingTheme = {
+    Tab = {
+        Left_Color = Color3.fromRGB(203 ,156, 255),
+        Right_Color = Color3.fromRGB(140, 166 ,252)
+    },
+    Button = {
+        Left_Color = Color3.fromRGB(203 ,156, 255),
+        Right_Color = Color3.fromRGB(140, 166 ,252)
+    },
+}
+    else
+local Hub = {
+     [5780309044] = {
+        [1] = "http://skyhubking.xyz/script/free_script/SKYHUB/StandAweaken.lua",
+   },
+     [6461766546] = {
+        [1] = "http://skyhubking.xyz/script/free_script/SKYHUB/AHeroDestiney.lua",
+   },
+     [1499872953] = {
+        [1] = "http://skyhubking.xyz/script/free_script/SKYHUB/BokuNo.lua",
+   },
+     [2753915549] = {
+        [1] = "http://skyhubking.xyz/script/free_script/SKYHUB/BloxFruit.lua",
+   },
+      [4442272183] = {
+        [1] = "http://skyhubking.xyz/script/free_script/SKYHUB/BloxFruit.lua",
+   },
+      [6110371797] = {
+        [1] = "http://skyhubking.xyz/script/free_script/SKYHUB/ProjectNewWorld.lua",
+   }, 
+      [6688650002] = {
+	[1] = "http://skyhubking.xyz/script/free_script/SKYHUB/RojutsuBlox.lua"
+   },
+      [3400631762] = {
+	[1] = "http://skyhubking.xyz/script/free_script/SKYHUB/JoJoBlox.lua"
+   },
+      [4313854107] = {
+	[1] = "http://skyhubking.xyz/script/free_script/SKYHUB/JoJoBlox.lua"
+   },
+      [4587545091] = {
+	[1] = "http://skyhubking.xyz/script/free_script/SKYHUB/VietNamPiece.lua"
+   },
+      [7148407314] = {
+	[1] = "http://skyhubking.xyz/script/free_script/SKYHUB/MagicSea.lua"
+   },
+}
 
--- Carregando biblioteca de GUI (assumindo que você tenha uma biblioteca de GUI como OrionLib disponível)
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
--- Criando a janela principal
-local Window = OrionLib:MakeWindow({Name = "Dragon SCRIPT", HidePremium = false, SaveConfig = true, ConfigFolder = "DragonScript"})
-
--- Aba principal do menu
-local MainTab = Window:MakeTab({
-    Name = "Principal",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
--- Adicionando a seção de Auto Farm
-MainTab:AddToggle({
-    Name = "Auto Farm Nível",
-    Default = false,
-    Callback = function(Value)
-        _G.AutoFarm = Value
-        while _G.AutoFarm do
-            wait(1)
-            -- Função de auto farm
-            local player = game.Players.LocalPlayer
-            local character = player.Character
-            local questNPC = workspace.QuestNPC -- Substitua pelo caminho certo para o NPC de missões
-
-            -- Pegando a missão
-            if not player:FindFirstChild("QuestInProgress") then
-                character.HumanoidRootPart.CFrame = questNPC.HumanoidRootPart.CFrame
-                wait(1)
-                fireproximityprompt(questNPC.ProximityPrompt)
-                wait(1)
-            end
-
-            -- Matando NPCs
-            for _, npc in pairs(workspace.NPCs:GetChildren()) do -- Substitua pelo caminho certo para os NPCs
-                if npc:FindFirstChild("Humanoid") and npc.Humanoid.Health > 0 then
-                    character.HumanoidRootPart.CFrame = npc.HumanoidRootPart.CFrame
-                    wait(1)
-                    -- Atacando o NPC
-                    npc.Humanoid:TakeDamage(10) -- Ajuste o dano conforme necessário
-                end
-            end
+for i,v in pairs(Hub) do
+    if i == game.PlaceId then
+        print("CheckScript")
+           loadstring(game:HttpGet(v[1]))()
+        else
+        
         end
     end
-})
-
--- Função para inicializar o menu
-OrionLib:Init()
+end
